@@ -167,6 +167,11 @@ crossover --workload sort --n-rows 5000000 --memory-budget-mb 2000
 
 ![a recorded session](docs/cli-session.svg)
 
+That image is generated from stdout captured at generation time, and
+`docs/evidence-manifest.json` records each command with the exit code it actually
+returned. It is not byte reproducible, because it contains real timings and those move
+between runs; the exit codes are, and they are what the manifest exists to let you check.
+
 `--memory-budget-mb` is the memory the target machine has, and the verdict compares it
 against measured peak resident memory. `--memory-cap-mb` is a separate flag that applies a
 hard address space cap to each measurement. They were one flag until trying to demonstrate

@@ -38,3 +38,9 @@ pragma would have produced a rounder number and a weaker guarantee.
 Engines write to stdout uninvited, so the result is the last line that parses as a JSON
 object rather than the whole of stdout. Parsing all of stdout worked locally and failed the
 first time Spark emitted a stage progress line.
+
+The captured terminal figure inherits the same property as everything else timed here: it
+is not byte reproducible, because it contains real measurements. `make figures` regenerates
+`docs/architecture.svg` identically and `docs/cli-session.svg` with fresh numbers. The exit
+codes in `docs/evidence-manifest.json` are the part that must not move, and they did not
+across a regeneration from a clean clone.
