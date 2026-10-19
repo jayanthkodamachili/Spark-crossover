@@ -45,22 +45,42 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--data-dir", default="data")
     parser.add_argument(
         "--memory-budget-mb", type=int, default=None,
-        help="the memory this workload is allowed on the target machine",
+        help="the memory this workload is allowed on the target machine; compared "
+             "against measured peak resident memory to produce the verdict",
+    )
+    parser.add_argument(
+        "--memory-cap-mb", type=int, default=None,
+        help="hard address space cap applied to each measurement, as an experiment; "
+             "separate from the budget because a cap counts reserved address space and "
+             "the budget is about memory actually used",
     )
     parser.add_argument("--json", action="store_true")
     return parser
 
 
 def classify(results: list, budget_mb: int | None) -> int:
-    survivors = [r for r in results if r.ok]
-    single_node_survivors = [r for r in survivors if r.engine in SINGLE_NODE]
+    """Grade the run against the memory the target machine actually has.
+
+    The budget is compared against measured peak resident memory, not against the optional
+    hard cap. An earlier version used one flag for both, and the result was that exit 1
+    could essentially never happen: survival under an address space cap requires a cap far
+    above what an engine resides in, so the measured peak was always a small fraction of
+    the number it was being compared against. Two different questions had been given one
+    knob. A code that cannot fire is not a conservative default, it is a dead branch that
+    looks like a feature.
+    """
+    single_node_survivors = [r for r in results if r.ok and r.engine in SINGLE_NODE]
 
     if not single_node_survivors:
         return EXIT_NEEDS_MORE_THAN_ONE_NODE
-    if budget_mb is not None:
-        headroom = min(r.peak_rss_mb for r in single_node_survivors)
-        if headroom > budget_mb * TIGHT_FRACTION:
-            return EXIT_TIGHT
+    if budget_mb is None:
+        return EXIT_FITS_ON_ONE_NODE
+
+    lightest = min(r.peak_rss_mb for r in single_node_survivors)
+    if lightest > budget_mb:
+        return EXIT_NEEDS_MORE_THAN_ONE_NODE
+    if lightest > budget_mb * TIGHT_FRACTION:
+        return EXIT_TIGHT
     return EXIT_FITS_ON_ONE_NODE
 
 
@@ -100,7 +120,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             results.append(run_measurement(
                 engine, args.workload, args.n_rows, repeats=args.repeats,
                 warmups=args.warmups, n_groups=args.n_groups, data_dir=args.data_dir,
-                memory_limit_mb=args.memory_budget_mb,
+                memory_limit_mb=args.memory_cap_mb,
             ))
     except Exception as exc:  # noqa: BLE001
         print(f"benchmark failed to complete: {exc}", file=sys.stderr)
@@ -129,6 +149,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(json.dumps({"results": [r.as_dict() for r in results]}, indent=2))
     else:
         print(render(results, args.memory_budget_mb))
+
     return classify(results, args.memory_budget_mb)
 
 

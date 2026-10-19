@@ -548,3 +548,55 @@ class TestSmallSurfaces:
                                  data_dir=data_dir)
         result = measure(config)
         assert len(result["timings"]) == 3
+
+
+class TestBudgetAndCapAreDifferentQuestions:
+    """These exist because one flag was doing both jobs and exit 1 could never fire.
+
+    Survival under an address space cap requires a cap far above what the engine resides
+    in, so comparing measured peak memory against the cap put every surviving run in the
+    comfortable band. The budget is now a separate number about the target machine.
+    """
+
+    def _m(self, engine, ok=True, peak=100.0):
+        return timing.Measurement(engine=engine, workload="sort", n_rows=1000, ok=ok,
+                                  median_seconds=0.1, peak_rss_mb=peak)
+
+    def test_tight_is_reachable(self):
+        assert cli.classify([self._m("duckdb", peak=175.0)], 200) == cli.EXIT_TIGHT
+
+    def test_comfortably_under_budget(self):
+        assert cli.classify([self._m("duckdb", peak=100.0)],
+                            1000) == cli.EXIT_FITS_ON_ONE_NODE
+
+    def test_over_budget_needs_another_machine(self):
+        """Finishing on a machine with more memory than the target has is not fitting."""
+        assert cli.classify([self._m("duckdb", peak=1200.0)],
+                            1000) == cli.EXIT_NEEDS_MORE_THAN_ONE_NODE
+
+    def test_exactly_at_the_budget_is_not_over_it(self):
+        assert cli.classify([self._m("duckdb", peak=1000.0)], 1000) == cli.EXIT_TIGHT
+
+    def test_the_lightest_engine_decides(self):
+        """One heavy engine does not condemn the workload if a lighter one fits."""
+        results = [self._m("pandas", peak=900.0), self._m("duckdb", peak=100.0)]
+        assert cli.classify(results, 1000) == cli.EXIT_FITS_ON_ONE_NODE
+
+    def test_no_budget_means_no_memory_verdict(self):
+        assert cli.classify([self._m("duckdb", peak=99999.0)],
+                            None) == cli.EXIT_FITS_ON_ONE_NODE
+
+    def test_the_cap_flag_is_passed_to_the_measurement_not_the_verdict(self, monkeypatch,
+                                                                      data_dir):
+        seen = {}
+
+        def fake(engine, workload, n_rows, **kwargs):
+            seen.update(kwargs)
+            return timing.Measurement(engine=engine, workload=workload, n_rows=n_rows,
+                                      ok=True, median_seconds=0.1, peak_rss_mb=50.0,
+                                      answer={"n": 1})
+
+        monkeypatch.setattr(cli, "run_measurement", fake)
+        cli.main(["--n-rows", "20000", "--engines", "duckdb", "--memory-cap-mb", "4096",
+                  "--memory-budget-mb", "100", "--data-dir", str(data_dir)])
+        assert seen["memory_limit_mb"] == 4096
