@@ -1,0 +1,154 @@
+{
+  "machine": {
+    "python": "3.13.16",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "logical_cores": 2
+  },
+  "experiment": "e3_by_operation",
+  "question": "Is there one crossover, or one per operation?",
+  "hypothesis": "engine rankings would change between operations",
+  "hypothesis_held": false,
+  "n_rows": 1600000,
+  "engines": [
+    "pandas",
+    "polars",
+    "duckdb",
+    "spark"
+  ],
+  "workloads": [
+    "groupby",
+    "join",
+    "sort",
+    "distinct"
+  ],
+  "cells": [
+    {
+      "workload": "groupby",
+      "engine": "pandas",
+      "work_seconds": 0.0748,
+      "total_seconds": 0.2865,
+      "peak_rss_mb": 424.3
+    },
+    {
+      "workload": "groupby",
+      "engine": "polars",
+      "work_seconds": 0.0431,
+      "total_seconds": 0.1369,
+      "peak_rss_mb": 232.3
+    },
+    {
+      "workload": "groupby",
+      "engine": "duckdb",
+      "work_seconds": 0.0131,
+      "total_seconds": 0.0869,
+      "peak_rss_mb": 146.6
+    },
+    {
+      "workload": "groupby",
+      "engine": "spark",
+      "work_seconds": 0.6194,
+      "total_seconds": 6.1685,
+      "peak_rss_mb": 154.8
+    },
+    {
+      "workload": "join",
+      "engine": "pandas",
+      "work_seconds": 0.1883,
+      "total_seconds": 0.3674,
+      "peak_rss_mb": 505.5
+    },
+    {
+      "workload": "join",
+      "engine": "polars",
+      "work_seconds": 0.0522,
+      "total_seconds": 0.1542,
+      "peak_rss_mb": 238.8
+    },
+    {
+      "workload": "join",
+      "engine": "duckdb",
+      "work_seconds": 0.0323,
+      "total_seconds": 0.0933,
+      "peak_rss_mb": 178.1
+    },
+    {
+      "workload": "join",
+      "engine": "spark",
+      "work_seconds": 1.4171,
+      "total_seconds": 7.0651,
+      "peak_rss_mb": 154.8
+    },
+    {
+      "workload": "sort",
+      "engine": "pandas",
+      "work_seconds": 0.6063,
+      "total_seconds": 0.7996,
+      "peak_rss_mb": 468.9
+    },
+    {
+      "workload": "sort",
+      "engine": "polars",
+      "work_seconds": 0.231,
+      "total_seconds": 0.3468,
+      "peak_rss_mb": 462.6
+    },
+    {
+      "workload": "sort",
+      "engine": "duckdb",
+      "work_seconds": 0.1704,
+      "total_seconds": 0.2312,
+      "peak_rss_mb": 172.4
+    },
+    {
+      "workload": "sort",
+      "engine": "spark",
+      "work_seconds": 3.5075,
+      "total_seconds": 8.8358,
+      "peak_rss_mb": 154.8
+    },
+    {
+      "workload": "distinct",
+      "engine": "pandas",
+      "work_seconds": 0.1317,
+      "total_seconds": 0.3145,
+      "peak_rss_mb": 459.1
+    },
+    {
+      "workload": "distinct",
+      "engine": "polars",
+      "work_seconds": 0.0754,
+      "total_seconds": 0.1741,
+      "peak_rss_mb": 275.6
+    },
+    {
+      "workload": "distinct",
+      "engine": "duckdb",
+      "work_seconds": 0.0302,
+      "total_seconds": 0.0927,
+      "peak_rss_mb": 150.7
+    },
+    {
+      "workload": "distinct",
+      "engine": "spark",
+      "work_seconds": 0.7362,
+      "total_seconds": 6.5242,
+      "peak_rss_mb": 154.2
+    }
+  ],
+  "spark_ratio_by_workload": {
+    "groupby": 47.2,
+    "join": 43.9,
+    "sort": 20.6,
+    "distinct": 24.4
+  },
+  "fastest_by_workload": {
+    "groupby": "duckdb",
+    "join": "duckdb",
+    "sort": "duckdb",
+    "distinct": "duckdb"
+  },
+  "best_workload_for_spark": "sort",
+  "worst_workload_for_spark": "groupby",
+  "spark_ratio_spread": 2.3,
+  "distinct_single_node_orderings": 1
+}

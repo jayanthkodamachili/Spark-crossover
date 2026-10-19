@@ -1,0 +1,206 @@
+{
+  "machine": {
+    "python": "3.13.16",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "logical_cores": 2
+  },
+  "experiment": "e4_memory_cliff",
+  "question": "Which engines survive a hard memory cap, and how do the rest fail?",
+  "n_rows": 6400000,
+  "workload": "sort",
+  "caps_mb": [
+    750,
+    1500,
+    3000,
+    6000
+  ],
+  "engines": [
+    "pandas",
+    "polars",
+    "duckdb",
+    "spark"
+  ],
+  "uncapped": {
+    "pandas": {
+      "peak_rss_mb": 1085.8,
+      "work_seconds": 4.0084,
+      "ok": true
+    },
+    "polars": {
+      "peak_rss_mb": 1068.6,
+      "work_seconds": 1.6796,
+      "ok": true
+    },
+    "duckdb": {
+      "peak_rss_mb": 252.1,
+      "work_seconds": 0.63,
+      "ok": true
+    },
+    "spark": {
+      "peak_rss_mb": 154.6,
+      "work_seconds": 11.3416,
+      "ok": true
+    }
+  },
+  "cells": [
+    {
+      "cap_mb": 750,
+      "engine": "pandas",
+      "ok": false,
+      "failure_kind": "memory_error",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "MemoryError: malloc of size 8388608 failed"
+    },
+    {
+      "cap_mb": 750,
+      "engine": "polars",
+      "ok": false,
+      "failure_kind": "memory_error",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "OSError: Cannot allocate memory (os error 12)"
+    },
+    {
+      "cap_mb": 750,
+      "engine": "duckdb",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 0.7018,
+      "peak_rss_mb": 253.3,
+      "error": null
+    },
+    {
+      "cap_mb": 750,
+      "engine": "spark",
+      "ok": false,
+      "failure_kind": "jvm_not_measurable",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number."
+    },
+    {
+      "cap_mb": 1500,
+      "engine": "pandas",
+      "ok": false,
+      "failure_kind": "memory_error",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "MemoryError"
+    },
+    {
+      "cap_mb": 1500,
+      "engine": "polars",
+      "ok": false,
+      "failure_kind": "aborted",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "killed by signal 6: memory allocation of 8388608 bytes failed\nstack backtrace:\nmemory allocation of 8388608 bytes failed\nskipping backtrace printing to avoid potential recursion"
+    },
+    {
+      "cap_mb": 1500,
+      "engine": "duckdb",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 0.6647,
+      "peak_rss_mb": 252.0,
+      "error": null
+    },
+    {
+      "cap_mb": 1500,
+      "engine": "spark",
+      "ok": false,
+      "failure_kind": "jvm_not_measurable",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number."
+    },
+    {
+      "cap_mb": 3000,
+      "engine": "pandas",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 4.1271,
+      "peak_rss_mb": 1078.2,
+      "error": null
+    },
+    {
+      "cap_mb": 3000,
+      "engine": "polars",
+      "ok": false,
+      "failure_kind": "aborted",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "killed by signal 6: memory allocation of 13005952 bytes failed\nstack backtrace:\nmemory allocation of 3714624 bytes failed\nskipping backtrace printing to avoid potential recursion"
+    },
+    {
+      "cap_mb": 3000,
+      "engine": "duckdb",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 0.6775,
+      "peak_rss_mb": 253.0,
+      "error": null
+    },
+    {
+      "cap_mb": 3000,
+      "engine": "spark",
+      "ok": false,
+      "failure_kind": "jvm_not_measurable",
+      "work_seconds": null,
+      "peak_rss_mb": null,
+      "error": "PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number."
+    },
+    {
+      "cap_mb": 6000,
+      "engine": "pandas",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 4.0473,
+      "peak_rss_mb": 1081.2,
+      "error": null
+    },
+    {
+      "cap_mb": 6000,
+      "engine": "polars",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 1.5707,
+      "peak_rss_mb": 1099.1,
+      "error": null
+    },
+    {
+      "cap_mb": 6000,
+      "engine": "duckdb",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 0.7524,
+      "peak_rss_mb": 253.2,
+      "error": null
+    },
+    {
+      "cap_mb": 6000,
+      "engine": "spark",
+      "ok": true,
+      "failure_kind": null,
+      "work_seconds": 13.1583,
+      "peak_rss_mb": 154.7,
+      "error": null
+    }
+  ],
+  "lowest_cap_survived_mb": {
+    "pandas": 3000,
+    "polars": 6000,
+    "duckdb": 750,
+    "spark": null
+  },
+  "not_measurable_under_cap": [
+    "spark"
+  ],
+  "failure_kinds_observed": [
+    "aborted",
+    "memory_error"
+  ],
+  "lowest_duckdb_cap_mb": 750,
+  "lowest_pandas_cap_mb": 3000
+}

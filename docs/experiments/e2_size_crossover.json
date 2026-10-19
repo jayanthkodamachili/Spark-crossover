@@ -1,0 +1,182 @@
+{
+  "machine": {
+    "python": "3.13.16",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "logical_cores": 2
+  },
+  "experiment": "e2_size_crossover",
+  "question": "At what size does Spark start beating a single node?",
+  "workload": "groupby",
+  "sizes": [
+    100000,
+    400000,
+    1600000,
+    6400000
+  ],
+  "engines": [
+    "pandas",
+    "polars",
+    "duckdb",
+    "spark"
+  ],
+  "cells": [
+    {
+      "n_rows": 100000,
+      "engine": "pandas",
+      "work_seconds": 0.0108,
+      "total_seconds": 0.011,
+      "setup_seconds": 0.0002,
+      "spread_ratio": 1.289,
+      "peak_rss_mb": 189.1
+    },
+    {
+      "n_rows": 100000,
+      "engine": "polars",
+      "work_seconds": 0.0057,
+      "total_seconds": 0.1271,
+      "setup_seconds": 0.1214,
+      "spread_ratio": 1.984,
+      "peak_rss_mb": 186.4
+    },
+    {
+      "n_rows": 100000,
+      "engine": "duckdb",
+      "work_seconds": 0.0035,
+      "total_seconds": 0.0819,
+      "setup_seconds": 0.0784,
+      "spread_ratio": 1.826,
+      "peak_rss_mb": 160.3
+    },
+    {
+      "n_rows": 100000,
+      "engine": "spark",
+      "work_seconds": 0.5386,
+      "total_seconds": 5.9352,
+      "setup_seconds": 5.3967,
+      "spread_ratio": 2.073,
+      "peak_rss_mb": 154.7
+    },
+    {
+      "n_rows": 400000,
+      "engine": "pandas",
+      "work_seconds": 0.023,
+      "total_seconds": 0.0231,
+      "setup_seconds": 0.0001,
+      "spread_ratio": 1.58,
+      "peak_rss_mb": 258.5
+    },
+    {
+      "n_rows": 400000,
+      "engine": "polars",
+      "work_seconds": 0.0125,
+      "total_seconds": 0.1111,
+      "setup_seconds": 0.0987,
+      "spread_ratio": 2.016,
+      "peak_rss_mb": 212.5
+    },
+    {
+      "n_rows": 400000,
+      "engine": "duckdb",
+      "work_seconds": 0.0052,
+      "total_seconds": 0.0578,
+      "setup_seconds": 0.0526,
+      "spread_ratio": 1.255,
+      "peak_rss_mb": 161.8
+    },
+    {
+      "n_rows": 400000,
+      "engine": "spark",
+      "work_seconds": 0.5958,
+      "total_seconds": 6.3392,
+      "setup_seconds": 5.7434,
+      "spread_ratio": 2.501,
+      "peak_rss_mb": 154.8
+    },
+    {
+      "n_rows": 1600000,
+      "engine": "pandas",
+      "work_seconds": 0.0935,
+      "total_seconds": 0.0936,
+      "setup_seconds": 0.0002,
+      "spread_ratio": 1.468,
+      "peak_rss_mb": 438.1
+    },
+    {
+      "n_rows": 1600000,
+      "engine": "polars",
+      "work_seconds": 0.03,
+      "total_seconds": 0.1332,
+      "setup_seconds": 0.1033,
+      "spread_ratio": 1.447,
+      "peak_rss_mb": 267.2
+    },
+    {
+      "n_rows": 1600000,
+      "engine": "duckdb",
+      "work_seconds": 0.0137,
+      "total_seconds": 0.0705,
+      "setup_seconds": 0.0568,
+      "spread_ratio": 1.146,
+      "peak_rss_mb": 168.4
+    },
+    {
+      "n_rows": 1600000,
+      "engine": "spark",
+      "work_seconds": 0.6536,
+      "total_seconds": 6.199,
+      "setup_seconds": 5.5454,
+      "spread_ratio": 1.541,
+      "peak_rss_mb": 154.6
+    },
+    {
+      "n_rows": 6400000,
+      "engine": "pandas",
+      "work_seconds": 0.3002,
+      "total_seconds": 0.3004,
+      "setup_seconds": 0.0002,
+      "spread_ratio": 1.319,
+      "peak_rss_mb": 829.2
+    },
+    {
+      "n_rows": 6400000,
+      "engine": "polars",
+      "work_seconds": 0.1084,
+      "total_seconds": 0.2151,
+      "setup_seconds": 0.1067,
+      "spread_ratio": 1.306,
+      "peak_rss_mb": 438.0
+    },
+    {
+      "n_rows": 6400000,
+      "engine": "duckdb",
+      "work_seconds": 0.0422,
+      "total_seconds": 0.1074,
+      "setup_seconds": 0.0651,
+      "spread_ratio": 1.298,
+      "peak_rss_mb": 174.3
+    },
+    {
+      "n_rows": 6400000,
+      "engine": "spark",
+      "work_seconds": 0.8695,
+      "total_seconds": 6.3825,
+      "setup_seconds": 5.513,
+      "spread_ratio": 1.132,
+      "peak_rss_mb": 154.6
+    }
+  ],
+  "spark_ratio_by_size": {
+    "100000": 152.88,
+    "400000": 114.65,
+    "1600000": 47.78,
+    "6400000": 20.6
+  },
+  "crossover_rows": null,
+  "largest_rows": 6400000,
+  "spark_ratio_at_largest": 20.6,
+  "spark_ratio_at_smallest": 152.9,
+  "ratio_improvement": 7.4,
+  "fitted_exponent": -0.497,
+  "extrapolated_crossover_rows": 3500000000.0,
+  "extrapolation_warning": "four points extrapolated three orders of magnitude beyond the measured range; reported to show the size of the gap, not to predict a number"
+}

@@ -1,0 +1,50 @@
+{
+  "machine": {
+    "python": "3.13.16",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "logical_cores": 2
+  },
+  "experiment": "e1_fixed_cost",
+  "question": "What does each engine cost before doing any work?",
+  "launches": 5,
+  "tiny_rows": 1000,
+  "cells": [
+    {
+      "engine": "pandas",
+      "setup_seconds": 0.2102,
+      "work_seconds": 0.009,
+      "floor_seconds": 0.2195,
+      "launch_spread_ratio": 1.123,
+      "floor_multiple": 3.8
+    },
+    {
+      "engine": "polars",
+      "setup_seconds": 0.0962,
+      "work_seconds": 0.0024,
+      "floor_seconds": 0.0987,
+      "launch_spread_ratio": 1.249,
+      "floor_multiple": 1.7
+    },
+    {
+      "engine": "duckdb",
+      "setup_seconds": 0.0571,
+      "work_seconds": 0.0012,
+      "floor_seconds": 0.0582,
+      "launch_spread_ratio": 1.269,
+      "floor_multiple": 1.0
+    },
+    {
+      "engine": "spark",
+      "setup_seconds": 5.6109,
+      "work_seconds": 0.7094,
+      "floor_seconds": 6.3486,
+      "launch_spread_ratio": 1.066,
+      "floor_multiple": 109.1
+    }
+  ],
+  "spark_floor_seconds": 6.3486,
+  "duckdb_floor_seconds": 0.0582,
+  "spark_floor_multiple": 109.1,
+  "spark_setup_seconds": 5.611,
+  "worst_launch_spread_ratio": 1.269
+}
