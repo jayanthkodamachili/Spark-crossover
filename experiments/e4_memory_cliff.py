@@ -38,7 +38,7 @@ def main() -> int:
         status = f"{m.median_seconds:7.3f}s" if m.ok else f"FAILED {m.failure_kind}"
         print(f"  {engine:7s} peak RSS {m.peak_rss_mb:7.0f} MB   {status}")
 
-    print(f"\nNow under address space caps.\n")
+    print("\nNow under address space caps.\n")
     survival: dict[int, dict[str, object]] = {}
     cells = []
     for cap in CAPS_MB:

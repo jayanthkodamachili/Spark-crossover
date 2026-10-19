@@ -99,7 +99,7 @@ def main() -> int:
             crossing = n_rows
 
     largest = SIZES[-1]
-    print(f"\nSpark's work time divided by the best single node engine's:")
+    print("\nSpark's work time divided by the best single node engine's:")
     for n_rows in SIZES:
         print(f"  {n_rows:>9,} rows: {ratios[n_rows]:6.1f}x")
 
