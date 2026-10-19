@@ -235,13 +235,7 @@ engine is real and measurable; on a single machine it is not repaid at any size 
 machine can hold; and the memory wall that usually motivates the move can be cleared by a
 better single node engine.
 
-## How this was built
 
-I built this with AI assistance (Claude), working through the design, the experiments and
-the writing in dialogue. The judgements, the refuted hypothesis in E3, and the decisions
-about what could not fairly be measured are recorded in `docs/adr/` as they happened. I am
-stating this plainly because a repository about honest measurement should not be coy about
-its own provenance.
 
 ## Layout
 
