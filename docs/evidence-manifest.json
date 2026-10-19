@@ -1,0 +1,21 @@
+{
+  "note": "each command was run by tools/capture_cli.py, exit codes as returned",
+  "runs": [
+    {
+      "command": "crossover --n-rows 400000 --memory-budget-mb 1000",
+      "exit_code": 0
+    },
+    {
+      "command": "crossover --workload sort --n-rows 1600000 --memory-budget-mb 200 --repeats 3 --warmups 0",
+      "exit_code": 1
+    },
+    {
+      "command": "crossover --workload sort --n-rows 1600000 --memory-cap-mb 400 --repeats 3 --warmups 0",
+      "exit_code": 5
+    },
+    {
+      "command": "crossover --n-rows 10",
+      "exit_code": 2
+    }
+  ]
+}

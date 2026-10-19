@@ -1,0 +1,48 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b  # v5.3.0
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b  # v4.6.0
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      # setuptools is pinned below 81 because PySpark still ships a legacy setup.py that
+      # reaches for install_layout, which newer setuptools removed. ADR-001 has the
+      # diagnosis; without this the install fails with an AttributeError naming neither
+      # Spark nor setuptools.
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip "setuptools<81" wheel
+          python -m pip install -e ".[dev]"
+
+      - name: Lint
+        run: python -m ruff check .
+
+      # junit.xml and coverage.json are written here because the figure check reads them
+      # rather than running the suite a second time.
+      - name: Tests
+        run: |
+          python -m pytest --junitxml=junit.xml --cov=spark_crossover \
+            --cov-report=term-missing --cov-report=json --cov-fail-under=99
+
+      # Benchmarks are deliberately not rerun here. Timings on a shared CI runner vary far
+      # more than they do locally, and a check that re-measures a non-deterministic
+      # quantity and demands it match the published figure fails at random. See ADR-003.
+      # The recorded run in docs/experiments is checked against the prose instead.
+      - name: Figures match the recorded run
+        run: |
+          python tools/collect_metrics.py --skip-tests
+          python tools/check_numbers.py

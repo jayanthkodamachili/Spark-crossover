@@ -1,0 +1,417 @@
+{
+  "metrics": {
+    "tests_total": 86,
+    "coverage_line_pct": 99,
+    "uncovered_lines": 3,
+    "spark_floor_seconds": 6.35,
+    "duckdb_floor_seconds": 0.058,
+    "spark_floor_multiple": 109.0,
+    "spark_setup_seconds": 5.61,
+    "worst_launch_spread_ratio": 1.27,
+    "largest_rows": 6400000,
+    "spark_ratio_at_largest": 20.6,
+    "spark_ratio_at_smallest": 153.0,
+    "ratio_improvement": 7.4,
+    "fitted_exponent": -0.497,
+    "extrapolated_crossover_billions": 3.5,
+    "e3_n_rows": 1600000,
+    "spark_ratio_spread": 2.3,
+    "distinct_orderings": 1,
+    "cap_workload_rows": 6400000,
+    "duckdb_cap_mb": 750,
+    "pandas_cap_mb": 3000,
+    "polars_cap_mb": 6000,
+    "pandas_peak_rss_mb": 1085,
+    "e4_pandas_work": 4.01,
+    "polars_peak_rss_mb": 1068,
+    "e4_polars_work": 1.68,
+    "duckdb_peak_rss_mb": 252,
+    "e4_duckdb_work": 0.63,
+    "spark_peak_rss_mb": 154,
+    "e4_spark_work": 11.34,
+    "e1_pandas_setup": 0.21,
+    "e1_pandas_floor": 0.22,
+    "e1_polars_setup": 0.096,
+    "e1_polars_floor": 0.099,
+    "e1_duckdb_setup": 0.057,
+    "e1_duckdb_floor": 0.058,
+    "e1_spark_setup": 5.611,
+    "e1_spark_floor": 6.349,
+    "e2_pandas_100000": 0.011,
+    "e2_polars_100000": 0.006,
+    "e2_duckdb_100000": 0.004,
+    "e2_spark_100000": 0.539,
+    "e2_pandas_400000": 0.023,
+    "e2_polars_400000": 0.013,
+    "e2_duckdb_400000": 0.005,
+    "e2_spark_400000": 0.596,
+    "e2_pandas_1600000": 0.093,
+    "e2_polars_1600000": 0.03,
+    "e2_duckdb_1600000": 0.014,
+    "e2_spark_1600000": 0.654,
+    "e2_pandas_6400000": 0.3,
+    "e2_polars_6400000": 0.108,
+    "e2_duckdb_6400000": 0.042,
+    "e2_spark_6400000": 0.87,
+    "e2_ratio_100000": 152.9,
+    "e2_ratio_400000": 114.7,
+    "e2_ratio_1600000": 47.8,
+    "e2_ratio_6400000": 20.6,
+    "e3_pandas_groupby": 0.075,
+    "e3_polars_groupby": 0.043,
+    "e3_duckdb_groupby": 0.013,
+    "e3_spark_groupby": 0.619,
+    "e3_pandas_join": 0.188,
+    "e3_polars_join": 0.052,
+    "e3_duckdb_join": 0.032,
+    "e3_spark_join": 1.417,
+    "e3_pandas_sort": 0.606,
+    "e3_polars_sort": 0.231,
+    "e3_duckdb_sort": 0.17,
+    "e3_spark_sort": 3.507,
+    "e3_pandas_distinct": 0.132,
+    "e3_polars_distinct": 0.075,
+    "e3_duckdb_distinct": 0.03,
+    "e3_spark_distinct": 0.736,
+    "e3_ratio_groupby": 47.2,
+    "e3_ratio_join": 43.9,
+    "e3_ratio_sort": 20.6,
+    "e3_ratio_distinct": 24.4
+  },
+  "display": {
+    "tests_total": "86",
+    "coverage_line_pct": "99",
+    "uncovered_lines": "3",
+    "spark_floor_seconds": "6.35",
+    "duckdb_floor_seconds": "0.058",
+    "spark_floor_multiple": "109",
+    "spark_setup_seconds": "5.61",
+    "worst_launch_spread_ratio": "1.27",
+    "largest_rows": "6,400,000",
+    "spark_ratio_at_largest": "20.6",
+    "spark_ratio_at_smallest": "153",
+    "ratio_improvement": "7.4",
+    "fitted_exponent": "-0.497",
+    "extrapolated_crossover_billions": "3.5",
+    "e3_n_rows": "1,600,000",
+    "spark_ratio_spread": "2.3",
+    "distinct_orderings": "1",
+    "cap_workload_rows": "6,400,000",
+    "duckdb_cap_mb": "750",
+    "pandas_cap_mb": "3000",
+    "polars_cap_mb": "6000",
+    "pandas_peak_rss_mb": "1085",
+    "e4_pandas_work": "4.01",
+    "polars_peak_rss_mb": "1068",
+    "e4_polars_work": "1.68",
+    "duckdb_peak_rss_mb": "252",
+    "e4_duckdb_work": "0.63",
+    "spark_peak_rss_mb": "154",
+    "e4_spark_work": "11.34",
+    "e1_pandas_setup": "0.210",
+    "e1_pandas_floor": "0.220",
+    "e1_polars_setup": "0.096",
+    "e1_polars_floor": "0.099",
+    "e1_duckdb_setup": "0.057",
+    "e1_duckdb_floor": "0.058",
+    "e1_spark_setup": "5.611",
+    "e1_spark_floor": "6.349",
+    "e2_pandas_100000": "0.011",
+    "e2_polars_100000": "0.006",
+    "e2_duckdb_100000": "0.004",
+    "e2_spark_100000": "0.539",
+    "e2_pandas_400000": "0.023",
+    "e2_polars_400000": "0.013",
+    "e2_duckdb_400000": "0.005",
+    "e2_spark_400000": "0.596",
+    "e2_pandas_1600000": "0.093",
+    "e2_polars_1600000": "0.030",
+    "e2_duckdb_1600000": "0.014",
+    "e2_spark_1600000": "0.654",
+    "e2_pandas_6400000": "0.300",
+    "e2_polars_6400000": "0.108",
+    "e2_duckdb_6400000": "0.042",
+    "e2_spark_6400000": "0.870",
+    "e2_ratio_100000": "152.9",
+    "e2_ratio_400000": "114.7",
+    "e2_ratio_1600000": "47.8",
+    "e2_ratio_6400000": "20.6",
+    "e3_pandas_groupby": "0.075",
+    "e3_polars_groupby": "0.043",
+    "e3_duckdb_groupby": "0.013",
+    "e3_spark_groupby": "0.619",
+    "e3_pandas_join": "0.188",
+    "e3_polars_join": "0.052",
+    "e3_duckdb_join": "0.032",
+    "e3_spark_join": "1.417",
+    "e3_pandas_sort": "0.606",
+    "e3_polars_sort": "0.231",
+    "e3_duckdb_sort": "0.170",
+    "e3_spark_sort": "3.507",
+    "e3_pandas_distinct": "0.132",
+    "e3_polars_distinct": "0.075",
+    "e3_duckdb_distinct": "0.030",
+    "e3_spark_distinct": "0.736",
+    "e3_ratio_groupby": "47.2",
+    "e3_ratio_join": "43.9",
+    "e3_ratio_sort": "20.6",
+    "e3_ratio_distinct": "24.4"
+  },
+  "anchors": {
+    "tests_total": [
+      "{} tests"
+    ],
+    "coverage_line_pct": [
+      "{} percent line coverage"
+    ],
+    "uncovered_lines": [
+      "{} uncovered lines",
+      "the {} lines"
+    ],
+    "spark_floor_seconds": [
+      "under {}s",
+      "floor of {}s"
+    ],
+    "duckdb_floor_seconds": [
+      "duckdb's floor of {}s",
+      "floor is {}s"
+    ],
+    "spark_floor_multiple": [
+      "{} times lower",
+      "{} times duckdb"
+    ],
+    "spark_setup_seconds": [
+      "{}s of that",
+      "jvm costs {}s"
+    ],
+    "worst_launch_spread_ratio": [
+      "varies by up to {}",
+      "spread of {}"
+    ],
+    "largest_rows": [
+      "largest size measured, {} rows",
+      "{} rows, "
+    ],
+    "spark_ratio_at_largest": [
+      "still {} times",
+      "{}x slower"
+    ],
+    "spark_ratio_at_smallest": [
+      "from {}x",
+      "{} times slower at the smallest"
+    ],
+    "ratio_improvement": [
+      "closes by {}x",
+      "narrowed {}x"
+    ],
+    "fitted_exponent": [
+      "exponent of {}",
+      "slope of {}"
+    ],
+    "extrapolated_crossover_billions": [
+      "near {} billion rows"
+    ],
+    "e3_n_rows": [
+      "all four at {} rows",
+      "{} rows"
+    ],
+    "spark_ratio_spread": [
+      "spread of {}x",
+      "varies {}x"
+    ],
+    "distinct_orderings": [
+      "{} ordering",
+      "in {} order"
+    ],
+    "duckdb_cap_mb": [
+      "under {} mb",
+      "{} mb cap"
+    ],
+    "pandas_cap_mb": [
+      "needs {} mb",
+      "{} mb before"
+    ],
+    "polars_cap_mb": [
+      "polars needs {} mb",
+      "not until {} mb"
+    ],
+    "spark_peak_rss_mb": [
+      "{} mb, the least",
+      "spark uses {} mb"
+    ],
+    "cap_workload_rows": [
+      "{} row sort",
+      "sorting {} rows"
+    ],
+    "pandas_peak_rss_mb": [
+      "| {} |"
+    ],
+    "e4_pandas_work": [
+      "| {} |"
+    ],
+    "polars_peak_rss_mb": [
+      "| {} |"
+    ],
+    "e4_polars_work": [
+      "| {} |"
+    ],
+    "duckdb_peak_rss_mb": [
+      "| {} |"
+    ],
+    "e4_duckdb_work": [
+      "| {} |"
+    ],
+    "e4_spark_work": [
+      "| {} |"
+    ],
+    "e1_pandas_setup": [
+      "| {} |"
+    ],
+    "e1_pandas_floor": [
+      "| {} |"
+    ],
+    "e1_polars_setup": [
+      "| {} |"
+    ],
+    "e1_polars_floor": [
+      "| {} |"
+    ],
+    "e1_duckdb_setup": [
+      "| {} |"
+    ],
+    "e1_duckdb_floor": [
+      "| {} |"
+    ],
+    "e1_spark_setup": [
+      "| {} |"
+    ],
+    "e1_spark_floor": [
+      "| {} |"
+    ],
+    "e2_pandas_100000": [
+      "| {} |"
+    ],
+    "e2_polars_100000": [
+      "| {} |"
+    ],
+    "e2_duckdb_100000": [
+      "| {} |"
+    ],
+    "e2_spark_100000": [
+      "| {} |"
+    ],
+    "e2_pandas_400000": [
+      "| {} |"
+    ],
+    "e2_polars_400000": [
+      "| {} |"
+    ],
+    "e2_duckdb_400000": [
+      "| {} |"
+    ],
+    "e2_spark_400000": [
+      "| {} |"
+    ],
+    "e2_pandas_1600000": [
+      "| {} |"
+    ],
+    "e2_polars_1600000": [
+      "| {} |"
+    ],
+    "e2_duckdb_1600000": [
+      "| {} |"
+    ],
+    "e2_spark_1600000": [
+      "| {} |"
+    ],
+    "e2_pandas_6400000": [
+      "| {} |"
+    ],
+    "e2_polars_6400000": [
+      "| {} |"
+    ],
+    "e2_duckdb_6400000": [
+      "| {} |"
+    ],
+    "e2_spark_6400000": [
+      "| {} |"
+    ],
+    "e2_ratio_100000": [
+      "| {} |"
+    ],
+    "e2_ratio_400000": [
+      "| {} |"
+    ],
+    "e2_ratio_1600000": [
+      "| {} |"
+    ],
+    "e2_ratio_6400000": [
+      "| {} |"
+    ],
+    "e3_pandas_groupby": [
+      "| {} |"
+    ],
+    "e3_polars_groupby": [
+      "| {} |"
+    ],
+    "e3_duckdb_groupby": [
+      "| {} |"
+    ],
+    "e3_spark_groupby": [
+      "| {} |"
+    ],
+    "e3_pandas_join": [
+      "| {} |"
+    ],
+    "e3_polars_join": [
+      "| {} |"
+    ],
+    "e3_duckdb_join": [
+      "| {} |"
+    ],
+    "e3_spark_join": [
+      "| {} |"
+    ],
+    "e3_pandas_sort": [
+      "| {} |"
+    ],
+    "e3_polars_sort": [
+      "| {} |"
+    ],
+    "e3_duckdb_sort": [
+      "| {} |"
+    ],
+    "e3_spark_sort": [
+      "| {} |"
+    ],
+    "e3_pandas_distinct": [
+      "| {} |"
+    ],
+    "e3_polars_distinct": [
+      "| {} |"
+    ],
+    "e3_duckdb_distinct": [
+      "| {} |"
+    ],
+    "e3_spark_distinct": [
+      "| {} |"
+    ],
+    "e3_ratio_groupby": [
+      "| {} |"
+    ],
+    "e3_ratio_join": [
+      "| {} |"
+    ],
+    "e3_ratio_sort": [
+      "| {} |"
+    ],
+    "e3_ratio_distinct": [
+      "| {} |"
+    ]
+  },
+  "checked_documents": [
+    "README.md",
+    "docs/adr/ADR-005-what-this-cannot-measure.md"
+  ],
+  "note": "suite figures are re-measured here; timings are read from the recorded run in docs/experiments, because rerunning them changes them"
+}
